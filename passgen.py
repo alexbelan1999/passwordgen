@@ -1,3 +1,4 @@
+import time
 import random
 
 symbols = '_()+-/*!&$#?=@<>'
@@ -12,6 +13,10 @@ while number < 1:
 length = 0
 while length < 4:
     length = int(input('Длина пароля: '))
+
+file = open('passwords.txt', 'a')
+file.write(f'Дата: {time.ctime()}\n')
+file.write(f'Длина пароля: {length}\n')
 
 for n in range(number):
     password = ''
@@ -58,4 +63,8 @@ for n in range(number):
             elif choice == 3:
                 password += random.choice(numbers)
 
-    print(f'Пароль [{n + 1}]: {password}')
+    output = f'Пароль [{n + 1}]: {password}'
+    print(output)
+    file.write(output + '\n')
+
+file.close()
